@@ -2,6 +2,10 @@
   height: 100vh;
 }
 
+.close-nav {
+  width: 0px;
+}
+
 .content {
   background: var(--app-light);
 }
@@ -16,6 +20,7 @@ aside {
 
 nav {
   width: 250px;
+  transition: 500ms;
 }
 
 footer {
