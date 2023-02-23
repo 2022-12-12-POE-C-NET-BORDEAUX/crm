@@ -2,7 +2,12 @@
   <header>
     <ng-content select=".tr-header"></ng-content>
     <span (click)="toggle()">
-      <ng-content select=".tr-nav-btn"></ng-content>
+      <!-- <ng-content *ngIf="close" select=".tr-open-nav"></ng-content>
+        <ng-content *ngIf="!close" select=".tr-close-nav"></ng-content> -->
+      <ng-content *ngIf="close; else elseBlock" select=".tr-open-nav"></ng-content>
+      <ng-template #elseBlock>
+        <ng-content select=".tr-close-nav"></ng-content>
+      </ng-template>
     </span>
   </header>
   <main class="d-flex flex-grow-1">
