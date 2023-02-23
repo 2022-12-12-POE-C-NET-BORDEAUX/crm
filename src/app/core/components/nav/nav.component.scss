@@ -1,0 +1,16 @@
+a {
+  color: var(--app-light);
+  &:hover {
+    color: var(--app-primary);
+  }
+}
+
+// syntaxe css
+// a:hover {
+//   color: var(--app-primary);
+// }
+
+.active {
+  background-color: white;
+  color: var(--app-primary);
+}
