@@ -1,0 +1,10 @@
+button {
+  background: var(--app-primary);
+  border: var(--app-primary);
+  color: var(--app-light);
+}
+
+button:hover {
+  background: var(--app-primary-dark);
+  color: var(--app-light);
+}
