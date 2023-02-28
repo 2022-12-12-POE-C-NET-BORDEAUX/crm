@@ -4,10 +4,11 @@ import { RouterModule } from '@angular/router';
 import { IconsModule } from '../icons/icons.module';
 import { TemplatesModule } from '../templates/templates.module';
 import { BtnComponent } from './components/btn/btn.component';
+import { TableLightComponent } from './components/table-light/table-light.component';
 
 @NgModule({
-  declarations: [BtnComponent],
+  declarations: [BtnComponent, TableLightComponent],
   imports: [CommonModule, RouterModule],
-  exports: [TemplatesModule, IconsModule, BtnComponent],
+  exports: [TemplatesModule, IconsModule, BtnComponent, TableLightComponent],
 })
 export class SharedModule {}
