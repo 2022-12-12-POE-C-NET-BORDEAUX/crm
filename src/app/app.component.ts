@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +11,7 @@ export class AppComponent {
   private obs$: Observable<any>;
   private subj$: Subject<any>;
   private behav$: BehaviorSubject<any>;
+  private sub: Subscription;
 
   constructor() {
     this.title = 'crm';
@@ -20,7 +21,7 @@ export class AppComponent {
     this.subj$ = new Subject();
     this.behav$ = new BehaviorSubject('toto');
 
-    // this.obs$.subscribe((data) => console.log(data));
+    this.sub = this.obs$.subscribe((data) => console.log(data));
     // this.obs$.subscribe((data) => console.log(data));
 
     // this.subj$.next('toto');
@@ -33,5 +34,9 @@ export class AppComponent {
     // this.behav$.subscribe((data) => console.log(data));
     // this.behav$.next(Math.random());
     // this.behav$.subscribe((data) => console.log(data));
+  }
+
+  public ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }

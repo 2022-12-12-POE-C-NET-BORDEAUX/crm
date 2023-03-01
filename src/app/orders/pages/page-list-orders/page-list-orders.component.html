@@ -1,12 +1,12 @@
 <app-template-full-width [title]="title">
-  <app-table-light [headers]="headers" *ngIf="collection">
+  <app-table-light [headers]="headers" *ngIf="collection$ |async as collection">
     <tr *ngFor="let order of collection">
       <td>{{ order.typePresta }}</td>
       <td>{{ order.client }}</td>
       <td>{{ order.nbJours }}</td>
       <td>{{ order.tjmHt }}</td>
-      <td>TOTAL EXCL. TAXES</td>
-      <td>TOTAL INCL. TAXES</td>
+      <td>{{ order.nbJours |total : order.tjmHt }}</td>
+      <td>{{ order.nbJours |total : order.tjmHt : order.tva }}</td>
       <td>{{ order.state }}</td>
     </tr>
   </app-table-light>
