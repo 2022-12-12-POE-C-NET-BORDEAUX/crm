@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { StateOrder } from 'src/app/core/enums/state-order';
 import { Order } from 'src/app/core/models/order';
 import { OrdersService } from 'src/app/core/services/orders.service';
@@ -12,14 +13,15 @@ import { OrdersService } from 'src/app/core/services/orders.service';
 export class PageListOrdersComponent {
   public states: string[];
   public title: string;
-  public collection$!: Observable<Order[]>;
+  public collection$!: BehaviorSubject<Order[]>;
   public headers: string[];
 
-  constructor(private ordersService: OrdersService) {
+  constructor(private ordersService: OrdersService, private router: Router) {
     this.states = Object.values(StateOrder);
     this.title = 'Orders list';
     this.collection$ = this.ordersService.collection$;
     this.headers = [
+      'Actions',
       'Type',
       'Client',
       'Days',
@@ -39,11 +41,11 @@ export class PageListOrdersComponent {
     });
   }
 
-  // pas d'appels de methodes dans une interpolation, très mauvaise pratique
-  // beaucoup d'appels de la methode pour rien
-  // public total(val: number, coef: number, tva?: number): number {
-  //   console.log('method called');
-  //   if (tva) return val * coef * (1 + tva / 100);
-  //   return val * coef;
-  // }
+  public goToEdit(id: number) {
+    this.router.navigate(['orders', 'edit', id]);
+  }
+
+  public deleteItem(id: number) {
+    this.ordersService.delete(id).subscribe();
+  }
 }
